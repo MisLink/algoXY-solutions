@@ -1,5 +1,3 @@
-"""直观解法，时间复杂度 O(n^2)."""
-
 import time
 import random
 

@@ -9,8 +9,8 @@ def min_free(lst, l, u):
     m = (l + u) // 2
     if not lst:
         return l
-    left = list(filter(lambda x: x <= m, lst))
-    right = list(filter(lambda x: x > m, lst))
+    left = [i for i in lst if i <= m]
+    right = [i for i in lst if i > m]
     if len(left) == m - l + 1:
         return min_free(right, m + 1, u)
     else:
@@ -44,8 +44,8 @@ def main():
         data = random.sample(range(0, MILLION + loop_times), k=MILLION)
         start_time = time.clock()
         v1 = min_free(data, 0, len(data) - 1)
-        v2 = min_free_(data)
         print(f'result 1: {v1}')
+        v2 = min_free_(data)
         print(f'result 2: {v2}')
         total += time.clock() - start_time
     print(f'Average CPU time: {total / loop_times}s')

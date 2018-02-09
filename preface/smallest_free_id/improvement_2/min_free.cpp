@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <ctime>
 #include <iostream>
 #include <vector>
 #include "../generate_data.cpp"
@@ -18,30 +19,19 @@ int min_free(vector<int>::iterator begin, vector<int>::iterator end, int l,
   }
 }
 
-int min_free_(vector<int> lst) {
+int min_free_(vector<int> &lst) {
   int l = 0;
-  int n = lst.size();
-  int u = n - 1;
+  int u = lst.size() - 1;
   auto begin = lst.begin();
   auto end = lst.end();
-  while (end - begin > 0) {
+  while (end - begin) {
     int m = (l + u) / 2;
-    int left = 0;
-    for (auto right = begin; right < end; right++) {
-      if (*right <= m) {
-        auto temp = *right;
-        *right = *(begin + left);
-        *(begin + left) = temp;
-        // swap(*(begin + left), *right);
-        left++;
-      }
-    }
-    if (left == m - l + 1) {
-      // lst.erase(lst.begin(), lst.begin() + left);  // complexity: linear
-      begin = end - left;
+    auto left = partition(begin, end, [m](int i) { return i <= m; });
+    if (left - begin == m - l + 1) {
+      begin = left;
       l = m + 1;
     } else {
-      end = begin + left;
+      end = left;
       u = m;
     }
   }
@@ -49,16 +39,15 @@ int min_free_(vector<int> lst) {
 }
 
 int main() {
-  int hundred_thousand = 100000;
-  // int million = 1000000;
-  int million = 100;
+  // int hundred_thousand = 100000;
+  int million = 1000000;
   clock_t total = 0;
-  size_t loop_times = 1;
+  size_t loop_times = 10;
   for (size_t i = 0; i < loop_times; i++) {
     auto lst = generate_data(million, loop_times);
     clock_t start_time = clock();
-    // int v1 = min_free(lst.begin(), lst.end(), 0, lst.size() - 1);
-    // cout << "result 1: " << v1 << endl;
+    int v1 = min_free(lst.begin(), lst.end(), 0, lst.size() - 1);
+    cout << "result 1: " << v1 << endl;
     int v2 = min_free_(lst);
     cout << "result 2: " << v2 << endl;
     total += clock() - start_time;

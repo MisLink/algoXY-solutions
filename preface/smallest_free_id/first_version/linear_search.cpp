@@ -1,3 +1,4 @@
+#include <ctime>
 #include <iostream>
 #include <vector>
 #include "../generate_data.cpp"
@@ -24,7 +25,7 @@ int brute_force(vector<int> lst) {
 
 int main() {
   int hundred_thousand = 100000;
-  int million = 1000000;
+  // int million = 1000000;
   clock_t total = 0;
   size_t loop_times = 10;
   for (size_t i = 0; i < loop_times; i++) {

@@ -1,3 +1,4 @@
+#include <ctime>
 #include <iostream>
 #include <vector>
 #include "../generate_data.cpp"
@@ -19,7 +20,7 @@ int min_free(vector<int> &lst, int n) {
 }
 
 int main() {
-  int hundred_thousand = 100000;
+  // int hundred_thousand = 100000;
   int million = 1000000;
   clock_t total = 0;
   size_t loop_times = 10;
