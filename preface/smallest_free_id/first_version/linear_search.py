@@ -16,15 +16,16 @@ def brute_force(lst):
 def main():
     total = 0
     loop_times = 10
-    for i in range(loop_times):
+    for _ in range(loop_times):
         data = random.sample(
-            range(0, HUNDRED_THOUSAND + loop_times), k=HUNDRED_THOUSAND)
-        start_time = time.clock()
+            range(0, HUNDRED_THOUSAND + loop_times), k=HUNDRED_THOUSAND
+        )
+        start_time = time.perf_counter()
         v = brute_force(data)
-        print(f'result: {v}')
-        total += time.clock() - start_time
-    print(f'Average CPU time: {total / loop_times}s')
+        print(f"result: {v}")
+        total += time.perf_counter() - start_time
+    print(f"Average CPU time: {total / loop_times}s")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

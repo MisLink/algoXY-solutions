@@ -18,7 +18,7 @@ def min_free(lst, l, u):
 
 
 def min_free_(lst):
-    l = 0
+    l = 0  # noqa: E741
     u = len(lst) - 1
     while len(lst) > 0:
         m = (l + u) // 2
@@ -30,7 +30,7 @@ def min_free_(lst):
                 left += 1
         if left == m - l + 1:
             lst = lst[left:]
-            l = m + 1
+            l = m + 1  # noqa: E741
         else:
             lst = lst[:left]
             u = m
@@ -40,16 +40,16 @@ def min_free_(lst):
 def main():
     total = 0
     loop_times = 10
-    for i in range(loop_times):
+    for _ in range(loop_times):
         data = random.sample(range(0, MILLION + loop_times), k=MILLION)
         start_time = time.clock()
         v1 = min_free(data, 0, len(data) - 1)
-        print(f'result 1: {v1}')
+        print(f"result 1: {v1}")
         v2 = min_free_(data)
-        print(f'result 2: {v2}')
+        print(f"result 2: {v2}")
         total += time.clock() - start_time
-    print(f'Average CPU time: {total / loop_times}s')
+    print(f"Average CPU time: {total / loop_times}s")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

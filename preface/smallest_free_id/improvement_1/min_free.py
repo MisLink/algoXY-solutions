@@ -19,14 +19,14 @@ def min_free(lst):
 def main():
     total = 0
     loop_times = 10
-    for i in range(loop_times):
+    for _ in range(loop_times):
         data = random.sample(range(0, MILLION + loop_times), k=MILLION)
         start_time = time.clock()
         v = min_free(data)
-        print(f'result: {v}')
+        print(f"result: {v}")
         total += time.clock() - start_time
-    print(f'Average CPU time: {total / loop_times}s')
+    print(f"Average CPU time: {total / loop_times}s")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
