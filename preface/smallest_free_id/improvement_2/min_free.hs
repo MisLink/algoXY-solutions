@@ -1,5 +1,5 @@
 module MinFree where
-import Data.List
+import           Data.List
 
 bsearch :: [Int] -> Int -> Int -> Int
 bsearch xs l u | null xs                = l
